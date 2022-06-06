@@ -20,3 +20,5 @@ Route::get('/', function () {
 });
 
 Route::get('/recettes', [RecetteController::class, 'index'])->name('recettes.index');
+
+Route::get('/recettes/{recette}', [RecetteController::class, 'show'])->name('recettes.show');

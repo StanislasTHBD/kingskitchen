@@ -11,6 +11,12 @@
                     <div class="card-body">
                         <h5 class="card-title">Titre : {{ $recette->name }}</h5>
                         <p class="card-text">Prix : {{ $recette->price / 100 }} €</p>
+                        <div class="btn-group" role="group">
+                            <a type="button" class="btn btn-primary" href="{{ route('recettes.show', $recette) }}">
+                                <i class="bi bi-eye"></i>
+                            </a>
+
+                        </div>
                     </div>
                 </div>
             </div>
