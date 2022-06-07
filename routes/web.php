@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecetteController;
 
@@ -14,11 +17,44 @@ use App\Http\Controllers\RecetteController;
 |
 */
 
+/*
 Route::get('/', function () {
     return view('welcome');
 
 });
+*/
 
+Route::get('/', [PageController::class, 'index'])->name('home');
+
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'register'])->name('register');
+
+Route::resource('recettes', RecetteController::class);
+
+Route::get('/recettes/{recette}/edit', [RecetteController::class, 'edit'])
+    ->name('recettes.edit')
+    ->middleware('can:update,recette');
+
+Route::put('/recettes/{recette}', [RecetteController::class, 'update'])
+    ->name('recettes.update')
+    ->middleware('can:update,recette');
+
+
+/*
 Route::get('/recettes', [RecetteController::class, 'index'])->name('recettes.index');
 
+Route::get('/recettes/create', [RecetteController::class, 'create'])->name('recettes.create');
+Route::post('/recettes', [RecetteController::class, 'store'])->name('recettes.store');
+
 Route::get('/recettes/{recette}', [RecetteController::class, 'show'])->name('recettes.show');
+
+Route::get('/recettes/{recette}/edit', [RecetteController::class, 'edit'])->name('recettes.edit');
+Route::put('/recettes/{recette}', [RecetteController::class, 'update'])->name('recettes.update');
+
+Route::delete('/recettes/{recette}', [RecetteController::class, 'destroy'])->name('recettes.destroy');
+*/

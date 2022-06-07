@@ -16,6 +16,19 @@
                                 <i class="bi bi-eye"></i>
                             </a>
 
+                            @can('update', $recette)
+                                <a type="button" class="btn btn-primary" href="{{ route('recettes.edit', $recette) }}">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                            @endcan
+
+                            <form action="{{ route('recettes.destroy', $recette) }}" method="post">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="bi bi-trash3-fill"></i>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>

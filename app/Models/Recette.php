@@ -19,6 +19,7 @@ class Recette extends Model
         'description',
         'image',
         'price',
+        'user_id',
     ];
 
     /**
@@ -31,4 +32,9 @@ class Recette extends Model
         'updated_at' => 'datetime',
         'price' => 'integer',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
