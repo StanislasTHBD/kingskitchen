@@ -10,5 +10,5 @@
     <p>{{ $recette->description }}</p>
     <p>Prix : {{ $recette->price / 100 }} €</p>
 
-    <img src="{{ asset($recette->image) }}" atl=""/>
+    <img src="{{ asset($recette->image) }}" atl="" width="800"/>
 @endsection

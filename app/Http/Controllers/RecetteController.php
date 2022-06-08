@@ -84,6 +84,8 @@ class RecetteController extends Controller
      */
     public function update(RecetteRequest $request, Recette $recette)
     {
+        $recette->update($request->validated());
+
         if ($request->hasFile('image')) {
             $request->file('image')->store('public/recettes');
 
