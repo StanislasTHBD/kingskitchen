@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\RecetteInfo;
 use App\Models\Recette;
 use App\Http\Requests\RecetteRequest;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 
 class RecetteController extends Controller
@@ -107,5 +111,31 @@ class RecetteController extends Controller
         $recette->delete();
 
         return Response::redirectToRoute('recettes.index',['recette' => $recette])->with('status', 'Recette deleted!');
+    }
+
+    /**
+     * Download PDF.
+     *
+     * @param  \App\Models\Recette  $recette
+     * @return \Illuminate\Http\Response
+     */
+    public function download(Recette $recette)
+    {
+        $pdf = PDF::loadView('recettes.pdf', compact('recette'));
+
+        return $pdf->download(Str::slug($recette->name).'.pdf');
+    }
+
+    /**
+     * Send Email.
+     *
+     * @param  \App\Models\Recette  $recette
+     * @return \Illuminate\Http\Response
+     */
+    public function sendMail(Recette $recette)
+    {
+        Mail::to('lorem@ipsum.com')->send(new RecetteInfo($recette));
+
+        return Response::redirectToRoute('recettes.index')->with('status', 'Email send!');
     }
 }

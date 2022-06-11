@@ -34,6 +34,9 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
+Route::get('/recettes/{recette}/send-mail', [RecetteController::class, 'sendMail'])->name('recettes.send-mail');
+Route::get('/recettes/{recette}/download', [RecetteController::class, 'download'])->name('recettes.download');
+
 Route::resource('recettes', RecetteController::class);
 
 Route::get('/recettes/{recette}/edit', [RecetteController::class, 'edit'])
