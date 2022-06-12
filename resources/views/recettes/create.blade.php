@@ -42,7 +42,29 @@
             </div>
             @enderror
         </div>
+        <br/>
+        <p>Catégorie :</p>
+        <div>
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Catégorie...</option>
+                @foreach ($categories as $category)
+                <option value="">{{$category->nom}}</option>
+                @endforeach
+            </select>
+        </div>
+        <br/>
+        <p>Tags :</p>
 
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                <label class="form-check-label" for="inlineCheckbox1">1</label>
+            </div>
+
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+            <label class="form-check-label" for="inlineCheckbox2">2</label>
+        </div>
+        <br/>
         <button type="submit" class="btn btn-primary">Créer</button>
     </form>
 @endsection

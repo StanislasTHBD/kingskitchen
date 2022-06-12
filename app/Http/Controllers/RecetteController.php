@@ -33,9 +33,11 @@ class RecetteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return Response::view('recettes.create');
+        $recettes = Recette::where('category_id',$request->id)->get();
+
+        return Response::view('recettes.create', compact('recettes'));
     }
 
     /**
@@ -76,8 +78,10 @@ class RecetteController extends Controller
      * @param  \App\Models\Recette  $recette
      * @return \Illuminate\Http\Response
      */
-    public function edit(Recette $recette)
+    public function edit(Recette $recette, Request $request)
     {
+        $recettes = Recette::where('category_id',$request->id)->get();
+
         return view('recettes.edit', compact('recette'));
     }
 

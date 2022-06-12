@@ -6,6 +6,6 @@
 
 <ul>
     <li>Nom de la recette : {{ $recette->name }}</li>
-    <li>Prix : {{ $recette->price / 100 }} €</li>
+    <li>Prix : {{ number_format($recette->price,2) }} €</li>
     <li>Description : {{ $recette->description }}</li>
 </ul>

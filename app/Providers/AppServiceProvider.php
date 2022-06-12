@@ -24,6 +24,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer(['recettes/catergorie','layouts/app'], AppComposer::class);
+        view()->composer([
+            'recettes/catergorie',
+            'recettes/create',
+            'recettes/edit',
+            'layouts/app'
+        ], AppComposer::class);
     }
 }

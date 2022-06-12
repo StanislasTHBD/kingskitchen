@@ -12,7 +12,18 @@
 
                     <div class="card-body">
                         <h5 class="card-title">Titre : {{ $recette->name }}</h5>
-                        <p class="card-text">Prix : {{ $recette->price / 100 }} €</p>
+                        <p class="card-text">Prix : {{ number_format($recette->price,2) }} €</p>
+                        <p>Catégorie :
+                        <span class="badge rounded-pill text-bg-info">
+                            <a class="text-white" href="{{route('recettes.viewByCategory',['id'=>$recette->category->id])}}">{{ $recette->category->nom }}</a>
+                        </span></p>
+                        <p>Tags :</p>
+                        @foreach($recette->tags as $tag)
+                            <span class="badge rounded-pill text-bg-success">
+                                <a class="text-white" href="{{route('recettes.viewByTag',['id'=>$tag->id])}}">{{ $tag->nom }}</a>
+                            </span>
+                        @endforeach
+
                         <div class="btn-toolbar justify-content-between" role="toolbar">
                             <div class="btn-group me-auto" role="group">
                                 <a type="button" class="btn btn-primary" href="{{ route('recettes.show', $recette) }}">

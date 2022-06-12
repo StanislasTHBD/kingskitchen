@@ -48,6 +48,16 @@
             @enderror
         </div>
         <br/>
+        <p>Catégorie :</p>
+        <div>
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Catégorie...</option>
+                @foreach ($categories as $category)
+                    <option value="">{{$category->nom}}</option>
+                @endforeach
+            </select>
+        </div>
+        <br/>
         <label for="name" class="form-label">Image actuel :</label>
         <br/><br/>
         @if ($recette->image)
