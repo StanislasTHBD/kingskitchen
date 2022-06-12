@@ -1,6 +1,8 @@
 @extends('layouts.app')
-@section('title', 'Liste des recettes')
+@section('title', 'Categorie')
+
 @section('content')
+
     <h1>Liste des recettes</h1>
     <div class="row">
         @foreach ($recettes as $recette)
@@ -11,16 +13,6 @@
                     <div class="card-body">
                         <h5 class="card-title">Titre : {{ $recette->name }}</h5>
                         <p class="card-text">Prix : {{ $recette->price / 100 }} €</p>
-                        <span class="badge rounded-pill text-bg-info">
-                            <a class="text-white" href="{{route('recettes.viewByCategory',['id'=>$recette->category->id])}}">{{ $recette->category->nom }}</a>
-                        </span>
-
-                        @foreach($recette->tags as $tag)
-                            <span class="badge rounded-pill text-bg-success">
-                                <a class="text-white" href="{{route('recettes.viewByTag',['id'=>$tag->id])}}">{{ $tag->nom }}</a>
-                            </span>
-                        @endforeach
-
                         <div class="btn-toolbar justify-content-between" role="toolbar">
                             <div class="btn-group me-auto" role="group">
                                 <a type="button" class="btn btn-primary" href="{{ route('recettes.show', $recette) }}">

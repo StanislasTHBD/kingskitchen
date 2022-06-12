@@ -17,14 +17,16 @@ class DatabaseSeeder extends Seeder
     {
         // DB::table('users')->delete();
         // DB::table('products')->delete();
+        // DB::table('categories')->delete();
 
-        // \App\Models\User::factory(10)->create();
+         \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
 
-        // \App\Models\Recette::factory(15)->create();
+         \App\Models\Recette::factory(15)->create();
+
     }
 }

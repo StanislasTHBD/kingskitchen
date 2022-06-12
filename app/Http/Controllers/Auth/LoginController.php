@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +17,6 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         //dd($request->all());
-
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],

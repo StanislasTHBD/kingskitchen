@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Mail\RecetteInfo;
+use App\Models\Category;
 use App\Models\Recette;
 use App\Http\Requests\RecetteRequest;
+use App\Models\Tag;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
@@ -137,5 +139,30 @@ class RecetteController extends Controller
         Mail::to('lorem@ipsum.com')->send(new RecetteInfo($recette));
 
         return Response::redirectToRoute('recettes.index')->with('status', 'Email send!');
+    }
+
+    /**
+     * Category.
+     *
+     */
+    public function viewByCategory(Request $request) {
+        // Récupérer toutes les catégories >> is_online == 1
+        //$categories = Category::where('is_online',1)->get();
+        // dd($categories);
+
+        $recettes = Recette::where('category_id',$request->id)->get();
+
+        return view('recettes.categorie', compact('recettes'));
+    }
+
+    /**
+     * Tag.
+     *
+     */
+    public function viewByTag(Request $request) {
+        $tag = Tag::find($request->id);
+        $recettes = $tag->recettes;
+
+        return view('recettes.categorie', compact('recettes', 'tag'));
     }
 }

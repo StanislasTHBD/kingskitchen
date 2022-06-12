@@ -26,6 +26,10 @@ Route::get('/', function () {
 
 Route::get('/', [PageController::class, 'index'])->name('home');
 
+Route::get('/categorie/{id}', [RecetteController::class, 'viewByCategory'])->name('recettes.viewByCategory');
+
+Route::get('/tag/{id}', [RecetteController::class, 'viewByTag'])->name('recettes.viewByTag');
+
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 
@@ -46,7 +50,6 @@ Route::get('/recettes/{recette}/edit', [RecetteController::class, 'edit'])
 Route::put('/recettes/{recette}', [RecetteController::class, 'update'])
     ->name('recettes.update')
     ->middleware('can:update,recette');
-
 
 /*
 Route::get('/recettes', [RecetteController::class, 'index'])->name('recettes.index');
