@@ -42,7 +42,14 @@
             </div>
             @enderror
         </div>
-
+        <br/>
+        <div>
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Choisir la Catégorie...</option>
+                <option value="1">Tag1</option>
+            </select>
+        </div>
+        <br/>
         <button type="submit" class="btn btn-primary">Créer</button>
     </form>
 @endsection

@@ -10,7 +10,7 @@
 
                     <div class="card-body">
                         <h5 class="card-title">Titre : {{ $recette->name }}</h5>
-                        <p class="card-text">Prix : {{ $recette->price / 100 }} €</p>
+                        <p class="card-text">Prix : {{ number_format($recette->price,2) }} €</p>
                         <span class="badge rounded-pill text-bg-info">
                             <a class="text-white" href="{{route('recettes.viewByCategory',['id'=>$recette->category->id])}}">{{ $recette->category->nom }}</a>
                         </span>

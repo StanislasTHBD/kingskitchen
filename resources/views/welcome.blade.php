@@ -13,10 +13,21 @@
 
                     <div class="card-body">
                         <h5 class="card-title">Titre : {{ $recette->name }}</h5>
-                        <p class="card-text">Prix : {{ $recette->price / 100 }} €</p>
+                        <p class="card-text">Prix : {{ number_format($recette->price,2) }} €</p>
                         <span>
                             {{ $recette->user ? $recette->user->name : '' }}
                         </span>
+                        <p>Catégorie :
+                        <span class="badge rounded-pill text-bg-info">
+                            <a class="text-white" href="{{route('recettes.viewByCategory',['id'=>$recette->category->id])}}">{{ $recette->category->nom }}</a>
+                        </span></p>
+                        <p>Tags :</p>
+                        @foreach($recette->tags as $tag)
+                            <span class="badge rounded-pill text-bg-success">
+                                <a class="text-white" href="{{route('recettes.viewByTag',['id'=>$tag->id])}}">{{ $tag->nom }}</a>
+                            </span>
+                        @endforeach
+                        <br/>
 
                         <div class="btn-group" role="group">
                             <a type="button" class="btn btn-primary" href="{{ route('recettes.show', $recette) }}">
@@ -30,8 +41,8 @@
 
         @auth
             @foreach(auth()->user()->recettes as $recette)
-                <h2>{{ $recette->name }}</h2>
-                <p>{{ $recette->price / 100 }} €</p>
+                <h2>Titre : {{ $recette->name }}</h2>
+                <p>Prix : {{ number_format($recette->price,2) }} €</p>
                 <hr/>
             @endforeach
         @endauth
