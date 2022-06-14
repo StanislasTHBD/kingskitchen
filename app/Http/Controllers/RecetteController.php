@@ -31,6 +31,7 @@ class RecetteController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
@@ -82,13 +83,12 @@ class RecetteController extends Controller
     {
         $recettes = Recette::where('category_id',$request->id)->get();
 
-        return view('recettes.edit', compact('recette'));
+        return view('recettes.edit', compact('recette','recettes'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Recette  $recette
      * @return \Illuminate\Http\Response
      */
@@ -166,7 +166,7 @@ class RecetteController extends Controller
     public function viewByTag(Request $request) {
         $tag = Tag::find($request->id);
         $recettes = $tag->recettes;
-
+dd($recettes);
         return view('recettes.categorie', compact('recettes', 'tag'));
     }
 }

@@ -20,7 +20,8 @@ class Recette extends Model
         'image',
         'price',
         'user_id',
-        'category_id',
+        //'category_id',
+        //'tag_id',
     ];
 
     /**
