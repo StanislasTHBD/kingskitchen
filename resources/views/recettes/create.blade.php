@@ -35,7 +35,7 @@
         </div>
         <label for="name" class="form-label">Image :</label>
         <div class="input-group">
-            <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror" value=""/>
+            <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror"  />
             @error('image')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -45,10 +45,10 @@
         <br/>
         <p>Catégorie :</p>
         <div>
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" aria-label="Default select example" name="category_id">
                 <option selected>Catégorie...</option>
                 @foreach ($categories as $category)
-                <option value="">{{$category->nom}}</option>
+                <option value="{{$category->id}}"> {{$category->id}} - {{$category->nom}} </option>
                 @endforeach
             </select>
         </div>

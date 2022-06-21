@@ -18,17 +18,17 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="{{ route('recettes.index') }}">Toutes Recettes</a></li>
                         <li><hr class="dropdown-divider"></li>
-
                         @foreach($categories as $category)
                         <li><a class="dropdown-item" href="{{route('recettes.viewByCategory',['id'=>$category->id])}}">{{$category->nom}}</a></li>
                         @endforeach
-                        <!--
+
+                    <!--
                         <li><a class="dropdown-item" href="#">Apéritif</a></li>
                         <li><a class="dropdown-item" href="#">Entrées</a></li>
                         <li><a class="dropdown-item" href="#">Plats</a></li>
                         <li><a class="dropdown-item" href="#">Desserts</a></li>
                         <li><a class="dropdown-item" href="#">Boissons</a></li>
-                        -->
+                    -->
 
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="{{ route('recettes.create') }}">Créer une recette</a></li>
@@ -40,6 +40,20 @@
                     <a class="nav-link" href="{{ route('recettes.create') }}">Créer une recette</a>
                 </li>
                 -->
+            </ul>
+
+            <ul class="navbar-nav me">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Administration
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ route('category.index') }}">Voir les catégories</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="">Créer un Tag</a></li>
+                        </ul>
+                    </li>
+
             </ul>
             <ul class="navbar-nav me-2">
                 @guest

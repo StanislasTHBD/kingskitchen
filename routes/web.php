@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecetteController;
@@ -26,10 +27,22 @@ Route::get('/', function () {
 
 Route::get('/', [PageController::class, 'index'])->name('home');
 
-Route::get('/categorie/{id}', [RecetteController::class, 'viewByCategory'])->name('recettes.viewByCategory');
+/*
+ * Category
+ */
+Route::get('/categorie/index', [CategoryController::class, 'index'])->name('category.index');
 
-Route::get('/tag/{id}', [RecetteController::class, 'viewByTag'])->name('recettes.viewByTag');
+Route::get('/categorie/create', [CategoryController::class, 'create'])->name('category.create');
+Route::post('/categorie/index', [CategoryController::class, 'store'])->name('category.store');
 
+Route::get('/categorie/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+Route::put('/categorie/{id}', [CategoryController::class, 'update'])->name('category.update');
+
+Route::delete('/categorie/{categorie}', [CategoryController::class, 'destroy'])->name('category.destroy');
+
+/*
+ * Connexion
+ */
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 
@@ -37,6 +50,11 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
+/*
+ * Recette
+ */
+Route::get('/categorie/{id}', [RecetteController::class, 'viewByCategory'])->name('recettes.viewByCategory');
+Route::get('/tag/{id}', [RecetteController::class, 'viewByTag'])->name('recettes.viewByTag');
 
 Route::get('/recettes/{recette}/send-mail', [RecetteController::class, 'sendMail'])->name('recettes.send-mail');
 Route::get('/recettes/{recette}/download', [RecetteController::class, 'download'])->name('recettes.download');

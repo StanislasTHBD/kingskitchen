@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Mail\RecetteInfo;
-use App\Models\Category;
 use App\Models\Recette;
 use App\Http\Requests\RecetteRequest;
 use App\Models\Tag;
@@ -34,11 +33,10 @@ class RecetteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        $recettes = Recette::where('category_id',$request->id)->get();
 
-        return Response::view('recettes.create', compact('recettes'));
+        return Response::view('recettes.create');
     }
 
     /**
@@ -49,8 +47,10 @@ class RecetteController extends Controller
      */
     public function store(RecetteRequest $request)
     {
+
         $recette = Recette::create($request->validated());
         $recette->user()->associate($request->user());
+        $recette->category_id = $request->category_id;
 
         if ($request->hasFile('image')) {
             $request->file('image')->store('public/recettes');
@@ -166,7 +166,7 @@ class RecetteController extends Controller
     public function viewByTag(Request $request) {
         $tag = Tag::find($request->id);
         $recettes = $tag->recettes;
-dd($recettes);
+//dd($recettes);
         return view('recettes.categorie', compact('recettes', 'tag'));
     }
 }

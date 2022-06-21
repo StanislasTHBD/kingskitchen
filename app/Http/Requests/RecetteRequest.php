@@ -28,7 +28,7 @@ class RecetteRequest extends FormRequest
             'description' => 'required|max:255',
             'price' => 'required|numeric',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            //'category_id' => 'required',
+            'category_id' => 'required',
         ];
     }
 }
