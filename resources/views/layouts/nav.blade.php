@@ -50,7 +50,7 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{{ route('category.index') }}">Voir les catégories</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="">Créer un Tag</a></li>
+                            <li><a class="dropdown-item" href="{{ route('tag.index') }}">Voir les tags</a></li>
                         </ul>
                     </li>
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecetteController;
 
@@ -39,6 +40,19 @@ Route::get('/categorie/{id}/edit', [CategoryController::class, 'edit'])->name('c
 Route::put('/categorie/{id}', [CategoryController::class, 'update'])->name('category.update');
 
 Route::delete('/categorie/{categorie}', [CategoryController::class, 'destroy'])->name('category.destroy');
+
+/*
+ * Category
+ */
+Route::get('/tag/index', [TagController::class, 'index'])->name('tag.index');
+
+Route::get('/tag/create', [TagController::class, 'create'])->name('tag.create');
+Route::post('/tag/index', [TagController::class, 'store'])->name('tag.store');
+
+Route::get('/tag/{id}/edit', [TagController::class, 'edit'])->name('tag.edit');
+Route::put('/tag/{id}', [TagController::class, 'update'])->name('tag.update');
+
+Route::delete('/tag/{tag}', [TagController::class, 'destroy'])->name('tag.destroy');
 
 /*
  * Connexion
